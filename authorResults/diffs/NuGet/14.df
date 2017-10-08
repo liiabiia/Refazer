@@ -1,0 +1,62 @@
+--- a/test/Core.Test/PackageSourceProviderTest.cs
+ 
+             // disable package "three"
+-            settings.Setup(s => s.GetValues("disabledPackageSources")).Returns(new[] { new KeyValuePair<string, string>("three", "true" ) });
++            settings.Setup(s => s.GetSettingValues("disabledPackageSources", false)).Returns(
++                new[] { new SettingValue("three", "true", false) });
+             ...
+          
+                     .Verifiable();
+-            settings.Setup(s => s.GetValues("disabledPackageSources")).Returns(new KeyValuePair<string, string>[0]);
++            settings.Setup(s => s.GetSettingValues("disabledPackageSources", false)).Returns(
++                new SettingValue[0]);
+             settings.Setup(s => s.GetNestedValues("packageSourceCredentials", It.IsAny<string>())).Returns(new KeyValuePair<string, string>[0]);
+ 
+             var provider = CreatePackageSourceProvider(settings.Object);
+@@ -295,7 +294,8 @@ namespace NuGet.Test
+                                      new SettingValue("three", "threesource", false)
+                                 });
+ 
+-            settings.Setup(s => s.GetValues("disabledPackageSources")).Returns(new[] { new KeyValuePair<string, string>("two", "true") });
++            settings.Setup(s => s.GetSettingValues("disabledPackageSources", false)).Returns(
++                new[] { new SettingValue("two", "true", false) });
+             settings.Setup(s => s.GetNestedValues("packageSourceCredentials", It.IsAny<string>())).Returns(new KeyValuePair<string, string>[0]);
+ 
+             var provider = CreatePackageSourceProvider(settings.Object);
+@@ -323,7 +323,8 @@ namespace NuGet.Test
+                     .Returns(new[] { new SettingValue("one", "onesource", false)});
+ 
+             // Disable package source one
+-            settings.Setup(s => s.GetValues("disabledPackageSources")).Returns(new[] { new KeyValuePair<string, string>("one", "true") });
++            settings.Setup(s => s.GetSettingValues("disabledPackageSources", false)).Returns(
++                new[] { new SettingValue("one", "true", false) });
+             settings.Setup(s => s.GetNestedValues("packageSourceCredentials", It.IsAny<string>())).Returns(new KeyValuePair<string, string>[0]);
+ 
+             string configurationDefaultsFileContent = @"
+@@ -361,7 +362,7 @@ namespace NuGet.Test
+             settings.Setup(s => s.GetSettingValues("packageSources", true))
+                     .Returns(new[] { new SettingValue("two", "twosource", false) });
+             settings.Setup(s => s.GetNestedValues("packageSourceCredentials", It.IsAny<string>())).Returns(new KeyValuePair<string, string>[0]);
+-            settings.Setup(s => s.GetValues("disabledPackageSources")).Returns(new KeyValuePair<string, string>[0]);
++            settings.Setup(s => s.GetSettingValues("disabledPackageSources", false)).Returns(new SettingValue[0]);
+ 
+             string configurationDefaultsFileContent = @"
+ <configuration>
+@@ -401,7 +402,8 @@ namespace NuGet.Test
+             settings.Setup(s => s.GetSettingValues("packageSources", true))
+                     .Returns(new[] { new SettingValue("three", "threesource", false) });
+             settings.Setup(s => s.GetNestedValues("packageSourceCredentials", It.IsAny<string>())).Returns(new KeyValuePair<string, string>[0]);
+-            settings.Setup(s => s.GetValues("disabledPackageSources")).Returns(new KeyValuePair<string, string>[0]);
++            settings.Setup(s => s.GetSettingValues("disabledPackageSources", false)).Returns(
++                new SettingValue[0]);
+ 
+--- a/test/VisualStudio.Test/VsPackageSourceProviderTest.cs
+@@ -190,8 +188,8 @@ namespace NuGet.VisualStudio.Test
+                         .Returns(new[] { new SettingValue(NuGetLegacyOfficialFeedName, "https://go.microsoft.com/fwlink/?LinkID=206669", false) });
+ 
+             // disable the official source
+-            userSettings.Setup(s => s.GetValues("disabledPackageSources"))
+-                        .Returns(new[] { new KeyValuePair<string, string>(NuGetLegacyOfficialFeedName, "true") });
++            userSettings.Setup(s => s.GetSettingValues("disabledPackageSources", false))
++                        .Returns(new[] { new  SettingValue(NuGetLegacyOfficialFeedName, "true", false) });
+ 
