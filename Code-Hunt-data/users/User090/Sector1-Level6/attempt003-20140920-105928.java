@@ -1,0 +1,7 @@
+
+
+public class Program {
+  public static int Puzzle(String s) {
+    return s.length()-s.replaceFirst("."," ").s.replaceAll(" ."," ").length();
+  }
+}

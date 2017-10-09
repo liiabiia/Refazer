@@ -1,0 +1,21 @@
+using System;
+
+public class Program {
+  public static int Puzzle(string s) {
+    int a=0,b=0,c=0;
+	foreach(char c in s){
+		if(c == '(')
+			a+=1;
+		else if(c == ')' & a>b)
+			b+=1;
+		else if(c== ')' & a<b)
+			c+=1;
+		else
+			a = a;
+	}
+	if(a == b & c == 0)
+		return a;
+	else
+		return 0;
+  }
+}

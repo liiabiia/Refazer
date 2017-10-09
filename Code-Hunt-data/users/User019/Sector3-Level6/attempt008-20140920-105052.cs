@@ -1,0 +1,24 @@
+using System;
+using System.Linq;
+
+public static class Program {
+    public static int[] Puzzle(int[] a, int[] b) {
+		//int[] copyArray = a.ToArray();
+		//int[] sortedCopy = a.OrderBy(i => i).ToArray();
+		if((a.Length==0&&b.Length==0)||(a.Length==1&&b.Length==1&&a[0]==0&&b[0]==0||a.Length<b.Length)
+		{
+			a.length = 0;
+		}
+		else if (a.Sum()==0&&b.Length==0)
+		{
+			a.Length = 1;
+			a[0]=0;
+		}
+		else
+		[
+			Array.Sort(a);
+		]
+		
+        return a;
+    }
+}

@@ -1,0 +1,9 @@
+
+
+public class Program {
+  public static Boolean Puzzle(Boolean x, Boolean y, Boolean z) {
+	if (x == true) return true;
+    if ((x == false) && (y == false && z == false))return false;
+	return true;
+  }
+}
