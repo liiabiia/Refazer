@@ -1,0 +1,11 @@
+Refazer Instructions:
+1.	Obtain Refazer project
+	a.	git clone https://github.com/reudismam/Refazer/
+2.	Open Visual Studios (version used: 2017 enterprise)
+3.	Build solution
+	a. If warnings or errors
+		i. Examine if all references are resolved
+.	Go to Program.cs under RefazerManager
+	a.	Change path for example files to the path C:\path\to\refazer\project\ProgramSynthesis\example
+*For reference* 
+Output defaults to the folder outside of Refazer as “Refazerout”
